@@ -1506,8 +1506,8 @@ if(NOT WINDOWS OR CYGWIN)
 
   configure_file("${SDL2_SOURCE_DIR}/sdl2.pc.in"
     "${SDL2_BINARY_DIR}/sdl2.pc" @ONLY)
-  configure_file("${SDL2_SOURCE_DIR}/sdl2-config.in"
-    "${SDL2_BINARY_DIR}/sdl2-config")
+  configure_file("${SDL2_SOURCE_DIR}/sdl2-config.cmake.in"
+    "${SDL2_BINARY_DIR}/sdl2-config.cmake" @ONLY)
   configure_file("${SDL2_SOURCE_DIR}/sdl2-config.in"
     "${SDL2_BINARY_DIR}/sdl2-config" @ONLY)
   configure_file("${SDL2_SOURCE_DIR}/SDL2.spec.in"
@@ -1637,6 +1637,8 @@ if(NOT (WINDOWS OR CYGWIN))
     install(FILES ${SDL2_BINARY_DIR}/sdl2.pc
       DESTINATION "lib${LIB_SUFFIX}/pkgconfig")
   endif()
+  install(FILES ${SDL2_BINARY_DIR}/sdl2-config.cmake
+    DESTINATION "lib${LIB_SUFFIX}/cmake/SDL2")
   install(PROGRAMS ${SDL2_BINARY_DIR}/sdl2-config DESTINATION bin)
   # TODO: what about the .spec file? Is it only needed for RPM creation?
   install(FILES "${SDL2_SOURCE_DIR}/sdl2.m4" DESTINATION "${CMAKE_INSTALL_FULL_DATAROOTDIR}/aclocal")
